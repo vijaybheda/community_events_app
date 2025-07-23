@@ -1,0 +1,576 @@
+[
+  {
+    "id": "TC001",
+    "title": "Splash Screen Authentication Check",
+    "description": "Verify that the Splash Screen checks authentication state on app start and navigates to Login screen if unauthenticated, or Home screen if authenticated.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Launch the app and reach the Splash Screen"
+      },
+      {
+        "type": "assertion",
+        "description": "Check if unauthenticated user is redirected to the Login screen"
+      },
+      {
+        "type": "action",
+        "description": "Authenticate a user and restart the app to reach Splash Screen"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify authenticated user is navigated to the Home screen"
+      }
+    ]
+  },
+  {
+    "id": "TC002",
+    "title": "Google Sign-In Authentication Success",
+    "description": "Validate successful Google Sign-In using Firebase Auth navigates the user to the Home screen and preserves session across app restarts.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to Login screen"
+      },
+      {
+        "type": "action",
+        "description": "Select Google Sign-In and enter valid Google account credentials"
+      },
+      {
+        "type": "assertion",
+        "description": "Check login is successful and user is redirected to Home screen"
+      },
+      {
+        "type": "action",
+        "description": "Close and relaunch the app"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify user session is preserved and app navigates directly to Home"
+      }
+    ]
+  },
+  {
+    "id": "TC003",
+    "title": "Google Sign-In Authentication Failure",
+    "description": "Verify app handles Google Sign-In failures correctly and displays appropriate error messages without navigation to Home.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to Login screen"
+      },
+      {
+        "type": "action",
+        "description": "Attempt Google Sign-In with incorrect credentials or canceled sign-in"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify login fails and an error message is shown"
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure user remains on the Login screen"
+      }
+    ]
+  },
+  {
+    "id": "TC004",
+    "title": "Home Screen Events Tab Functionality",
+    "description": "Confirm that the Home screen displays tabs (All Events, My RSVP, Past Events), supports switching tabs, and updates event lists accordingly.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to Home screen"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify All Events tab is displayed by default with events list"
+      },
+      {
+        "type": "action",
+        "description": "Switch to My RSVP tab"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify only RSVP'd events are listed"
+      },
+      {
+        "type": "action",
+        "description": "Switch to Past Events tab"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify only events with past dates are listed"
+      }
+    ]
+  },
+  {
+    "id": "TC005",
+    "title": "Home Screen Search and Filter Events",
+    "description": "Validate event search input filters the displayed events by matching titles dynamically; filter options further narrow results.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to Home screen"
+      },
+      {
+        "type": "action",
+        "description": "Enter search query in the event search field"
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure events list updates to show only events matching the query"
+      },
+      {
+        "type": "action",
+        "description": "Apply filter options such as category or date"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the events list is correctly narrowed according to filters"
+      }
+    ]
+  },
+  {
+    "id": "TC006",
+    "title": "Pull-to-Refresh Events List",
+    "description": "Ensure the pull-to-refresh gesture on the events list fetches the latest data from Firestore and updates the UI.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to Home screen with events list"
+      },
+      {
+        "type": "action",
+        "description": "Perform pull-to-refresh gesture on the events list"
+      },
+      {
+        "type": "assertion",
+        "description": "Check that the events list updates with the most recent event data from Firestore"
+      }
+    ]
+  },
+  {
+    "id": "TC007",
+    "title": "View Event Details and RSVP Toggle",
+    "description": "Validate event detail view shows full information, allows authenticated users to RSVP and toggle their participation status.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "From Home screen, select an event to open Event Details view"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify all event details, image, category, date/time, and attendees list are displayed"
+      },
+      {
+        "type": "action",
+        "description": "Toggle RSVP status ON"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm RSVP is recorded and attendee is added"
+      },
+      {
+        "type": "action",
+        "description": "Toggle RSVP status OFF"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm RSVP is revoked and attendee is removed"
+      }
+    ]
+  },
+  {
+    "id": "TC008",
+    "title": "Event Creator Edit and Delete Permissions",
+    "description": "Verify that only event creators see edit and delete options in Event Details and unauthorized users are blocked from these actions with error feedback.",
+    "category": "security",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Login as user who is the creator of an event"
+      },
+      {
+        "type": "action",
+        "description": "Open Event Details of the user's event"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify edit and delete buttons are visible and functional"
+      },
+      {
+        "type": "action",
+        "description": "Login as a different authenticated user"
+      },
+      {
+        "type": "action",
+        "description": "Open Event Details of the same event"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify edit and delete buttons are not visible"
+      },
+      {
+        "type": "action",
+        "description": "Attempt to access edit or delete route for the event via URL or navigation"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm action is blocked and appropriate error message is shown"
+      }
+    ]
+  },
+  {
+    "id": "TC009",
+    "title": "Add Event Form Validation and Submission",
+    "description": "Ensure the Add Event form validates required fields, shows errors for invalid inputs, allows image upload, and successfully creates a new event in Firestore.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to Add Event screen"
+      },
+      {
+        "type": "action",
+        "description": "Attempt to submit form with empty required fields"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify validation errors are shown for each required field"
+      },
+      {
+        "type": "action",
+        "description": "Fill valid event title, description, category, date/time, and select image for upload"
+      },
+      {
+        "type": "action",
+        "description": "Submit the form"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm event is created in Firestore with correct data and image uploaded to Firebase Storage"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify UI updates to show the new event in relevant event lists"
+      }
+    ]
+  },
+  {
+    "id": "TC010",
+    "title": "Edit Event Form Pre-fill and Update",
+    "description": "Verify the Edit Event form pre-fills existing event data, validates inputs, allows image change, and updates the event correctly in Firestore.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Login as event creator and open Event Details for the event"
+      },
+      {
+        "type": "action",
+        "description": "Select Edit option to open the Edit Event form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify form fields are pre-filled with the current event data"
+      },
+      {
+        "type": "action",
+        "description": "Modify event fields including image"
+      },
+      {
+        "type": "action",
+        "description": "Submit the form"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm event data in Firestore and image in Firebase Storage are updated accordingly"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify UI reflects the updated event details"
+      }
+    ]
+  },
+  {
+    "id": "TC011",
+    "title": "Delete Event Confirmation and Removal",
+    "description": "Validate that event deletion prompts a confirmation dialog, removes event from Firestore upon confirmation, and updates UI properly.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Login as event creator and navigate to Event Details"
+      },
+      {
+        "type": "action",
+        "description": "Click Delete event button"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm a confirmation dialog appears asking to confirm deletion"
+      },
+      {
+        "type": "action",
+        "description": "Confirm deletion"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify event is removed from Firestore"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify event is removed from all event lists in the app UI"
+      }
+    ]
+  },
+  {
+    "id": "TC012",
+    "title": "My RSVPs Screen Functionality",
+    "description": "Verify the My RSVPs screen lists all events the user has RSVP'd to, supports event detail navigation, and allows RSVP revocation.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to My RSVPs screen"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm the list displays all events user has RSVP'd to"
+      },
+      {
+        "type": "action",
+        "description": "Select an event to view details"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify Event Details are shown with correct RSVP status"
+      },
+      {
+        "type": "action",
+        "description": "Revoke RSVP from My RSVPs screen or Event Details"
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure the event is removed from My RSVPs list and Firestore RSVP status updated"
+      }
+    ]
+  },
+  {
+    "id": "TC013",
+    "title": "User Profile Management and Logout",
+    "description": "Verify the Profile screen allows user to view and update avatar, switch languages and themes, and log out successfully.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to Profile screen"
+      },
+      {
+        "type": "assertion",
+        "description": "Check user avatar, email, and settings options are displayed"
+      },
+      {
+        "type": "action",
+        "description": "Change the user avatar by uploading a new image"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm avatar updates are reflected in profile and backend storage"
+      },
+      {
+        "type": "action",
+        "description": "Switch app language to Arabic and verify UI layout switches to RTL"
+      },
+      {
+        "type": "assertion",
+        "description": "Check all UI text updates dynamically and layout direction changes accordingly"
+      },
+      {
+        "type": "action",
+        "description": "Switch theme between light and dark mode"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify UI theme updates instantly across the app"
+      },
+      {
+        "type": "action",
+        "description": "Select Logout option"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm user is logged out and navigated to Login screen"
+      }
+    ]
+  },
+  {
+    "id": "TC014",
+    "title": "About/Help Section Content and External Links",
+    "description": "Validate the About/Help screen displays app information, FAQ, contact details, and external links which open correctly.",
+    "category": "functional",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to About/Help screen"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify app info, FAQ entries, and contact details are displayed correctly"
+      },
+      {
+        "type": "action",
+        "description": "Click on external links such as email, website, and GitHub"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm correct external apps open or external pages load as expected"
+      }
+    ]
+  },
+  {
+    "id": "TC015",
+    "title": "Network Failure and Offline Error Handling",
+    "description": "Ensure that the app gracefully handles network failures, showing appropriate SnackBar or toast messages without crashing and maintaining UI responsiveness.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Simulate network disconnection"
+      },
+      {
+        "type": "action",
+        "description": "Attempt to perform actions requiring network such as login, event creation, RSVP toggle, or pull-to-refresh"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that error messages are displayed indicating network issues"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm app does not crash and UI remains responsive"
+      }
+    ]
+  },
+  {
+    "id": "TC016",
+    "title": "Localization and RTL/LTR Layout Switching",
+    "description": "Validate that the app supports English, Arabic, and Hindi languages, dynamically switches text and layout direction (LTR/RTL) without restart.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "In Profile screen, change app language to English"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify all UI text is in English and layout is left-to-right"
+      },
+      {
+        "type": "action",
+        "description": "Change app language to Arabic"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify all UI text is translated to Arabic and app layout switches to right-to-left dynamically"
+      },
+      {
+        "type": "action",
+        "description": "Switch to Hindi language"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm UI text is in Hindi with left-to-right layout"
+      }
+    ]
+  },
+  {
+    "id": "TC017",
+    "title": "Navigation and Access Control Enforcement",
+    "description": "Check that all navigation routes enforce access controls, require required route parameters, and prevent unauthorized access.",
+    "category": "security",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Attempt to navigate to Event Details screen without providing event ID parameter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify navigation is blocked or error is handled gracefully"
+      },
+      {
+        "type": "action",
+        "description": "Try to access Add/Edit Event screen without proper authentication"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm user is redirected to Login screen"
+      },
+      {
+        "type": "action",
+        "description": "Access protected routes as authenticated user and verify correct content loads"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify no unauthorized data is accessible via route bypass"
+      }
+    ]
+  },
+  {
+    "id": "TC018",
+    "title": "Image Upload and Display in Events",
+    "description": "Verify that event images upload successfully to Firebase Storage during Add/Edit, display correctly as thumbnails on event cards and full size in details.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Create or edit an event with image upload"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm image uploads to Firebase Storage"
+      },
+      {
+        "type": "action",
+        "description": "Check event card on Home and RSVPs screens shows uploaded image thumbnail"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify image displays correctly and matches uploaded image"
+      },
+      {
+        "type": "action",
+        "description": "Open Event Details for the event"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify full-size image is correctly displayed"
+      }
+    ]
+  }
+]

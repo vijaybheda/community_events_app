@@ -1,0 +1,15 @@
+{
+  "status": "commited",
+  "type": "frontend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:8080",
+  "executionArgs": {
+    "projectName": "community_events_app",
+    "projectPath": "D:\\FlutterProjects\\self\\community_events_app",
+    "testIds": [],
+    "additionalInstruction": "Test the complete Community Events App with GetX architecture, including authentication, event management, RSVP system, and localization features. Focus on user flows from splash to event creation and management.",
+    "envs": {
+      "API_KEY": "sk-user-dHkC3XflaGY0sZn5KcBjdNOlEIp16Y1pympwDxhCi7L-4ncg46kMjSuzZuhds7u_skDTeipY1J_L0N-8MZB9D601RuQgRPLlm92zVYBgFM0B4c8eaDqyGVffAEv5q3s0dOI"
+    }
+  }
+}

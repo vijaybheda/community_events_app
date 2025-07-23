@@ -1,0 +1,129 @@
+{
+  "tech_stack": [
+    "Dart",
+    "Flutter",
+    "GetX",
+    "GetWidget",
+    "Firebase",
+    "Firestore",
+    "Firebase Auth",
+    "Firebase Storage",
+    "Google Sign-In"
+  ],
+  "features": [
+    {
+      "name": "Splash Screen",
+      "description": "App loading screen with navigation logic to Login or Home based on authentication state",
+      "files": [
+        "lib/app/views/splash_view.dart",
+        "lib/app/controllers/splash_controller.dart",
+        "lib/app/bindings/splash_binding.dart"
+      ]
+    },
+    {
+      "name": "Authentication System",
+      "description": "Google Sign-In integration with Firebase Auth, user state management, and logout functionality",
+      "files": [
+        "lib/app/views/login_view.dart",
+        "lib/app/controllers/login_controller.dart",
+        "lib/app/bindings/login_binding.dart",
+        "lib/app/services/auth_service.dart",
+        "lib/app/models/app_user.dart"
+      ]
+    },
+    {
+      "name": "Home Screen",
+      "description": "Main events listing with search, filter, tabs (All Events, My RSVP, Past Events), and pull-to-refresh",
+      "files": [
+        "lib/app/views/home_view.dart",
+        "lib/app/controllers/home_controller.dart",
+        "lib/app/bindings/home_binding.dart"
+      ]
+    },
+    {
+      "name": "Event Details",
+      "description": "Full event information display with RSVP functionality, attendees list, share, and edit/delete for creators",
+      "files": [
+        "lib/app/views/event_details_view.dart",
+        "lib/app/controllers/event_details_controller.dart",
+        "lib/app/bindings/event_details_binding.dart"
+      ]
+    },
+    {
+      "name": "Add/Edit Event",
+      "description": "Form for creating and editing events with validation, image upload, date/time picker, and category selection",
+      "files": [
+        "lib/app/views/add_event_view.dart",
+        "lib/app/controllers/add_event_controller.dart",
+        "lib/app/bindings/add_event_binding.dart"
+      ]
+    },
+    {
+      "name": "My RSVPs",
+      "description": "List of events user has RSVPed to with ability to revoke RSVP and view event details",
+      "files": [
+        "lib/app/views/my_rsvps_view.dart",
+        "lib/app/controllers/my_rsvps_controller.dart",
+        "lib/app/bindings/my_rsvps_binding.dart"
+      ]
+    },
+    {
+      "name": "Profile Management",
+      "description": "User profile display with settings, language/theme switching, logout, and navigation to other screens",
+      "files": [
+        "lib/app/views/profile_view.dart",
+        "lib/app/controllers/profile_controller.dart",
+        "lib/app/bindings/profile_binding.dart"
+      ]
+    },
+    {
+      "name": "About/Help",
+      "description": "App information, FAQ, contact details, features list, and external links (email, website, GitHub)",
+      "files": [
+        "lib/app/views/about_view.dart",
+        "lib/app/controllers/about_controller.dart",
+        "lib/app/bindings/about_binding.dart"
+      ]
+    },
+    {
+      "name": "Data Models",
+      "description": "AppUser and Event models with Firestore integration, serialization, and data validation",
+      "files": [
+        "lib/app/models/app_user.dart",
+        "lib/app/models/event.dart"
+      ]
+    },
+    {
+      "name": "Firebase Services",
+      "description": "Firestore database operations, Firebase Storage for images, and Firebase Auth for authentication",
+      "files": [
+        "lib/app/services/firestore_service.dart",
+        "lib/app/services/storage_service.dart",
+        "lib/app/services/auth_service.dart"
+      ]
+    },
+    {
+      "name": "Navigation & Routing",
+      "description": "GetX named routing system with route definitions, bindings, and navigation management",
+      "files": [
+        "lib/app/routes/app_routes.dart",
+        "lib/app/routes/app_pages.dart"
+      ]
+    },
+    {
+      "name": "Localization",
+      "description": "Multi-language support (English, Arabic, Hindi) with RTL/LTR layout support and dynamic language switching",
+      "files": [
+        "lib/app/translations/app_translations.dart"
+      ]
+    },
+    {
+      "name": "App Entry Point",
+      "description": "Main app initialization with Firebase setup, GetX configuration, localization, and routing",
+      "files": [
+        "lib/main.dart",
+        "lib/firebase_options.dart"
+      ]
+    }
+  ]
+} 
